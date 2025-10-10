@@ -5,55 +5,119 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Baby Monitor App</title>
     <style>
+      /* App-matched palette */
+      :root {
+        --bg: #cfe9fb; /* light baby blue background */
+        --ink: #243036; /* dark gray text, like the app headers */
+        --muted: #5b6a72; /* secondary text */
+        --pill-bg: #ffffff; /* white pill buttons */
+        --pill-border: #e4edf3; /* subtle border like rounded cards */
+        --pill-hover: #f4f8ff; /* gentle hover */
+        --shadow: 0 6px 20px rgba(23, 43, 77, 0.08);
+        --radius-xl: 20px;
+        --radius-pill: 9999px;
+      }
+
+      /* Page base */
+      html,
+      body {
+        height: 100%;
+      }
       body {
         font-family:
           -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-        margin: 40px auto;
-        max-width: 700px;
-        line-height: 1.6;
-        color: #333;
-        padding: 0 15px;
+        margin: 0;
+        background: var(--bg);
+        color: var(--ink);
+        display: grid;
+        place-items: start center;
+      }
+
+      /* Centered panel mimicking the app's rounded white card */
+      .panel {
+        width: min(760px, 92vw);
+        margin: 48px auto;
+        background: var(--pill-bg);
+        border: 1px solid var(--pill-border);
+        border-radius: var(--radius-xl);
+        box-shadow: var(--shadow);
+        padding: clamp(20px, 4vw, 36px);
         text-align: center;
       }
+
       h1 {
-        margin-bottom: 0.5em;
+        margin: 0 0 0.35em;
+        font-size: clamp(28px, 3.8vw, 36px);
+        font-weight: 700;
+        letter-spacing: -0.01em;
+        color: var(--ink);
       }
+
       p {
-        margin-bottom: 1.5em;
+        margin: 0 auto 1.25em;
+        line-height: 1.6;
+        color: var(--muted);
+        max-width: 56ch;
       }
-      a {
-        display: inline-block;
-        margin: 10px;
+
+      /* Pills like the app’s buttons */
+      .actions {
+        display: flex;
+        gap: 12px;
+        justify-content: center;
+        flex-wrap: wrap;
+        margin: 20px 0 8px;
+      }
+
+      a.button {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
         padding: 12px 20px;
-        background-color: #007aff;
-        color: white;
-        border-radius: 8px;
+        background: var(--pill-bg);
+        color: var(--ink);
+        border: 1px solid var(--pill-border);
+        border-radius: var(--radius-pill);
         text-decoration: none;
-        font-weight: 500;
+        font-weight: 600;
+        box-shadow: var(--shadow);
+        transition:
+          transform 0.08s ease,
+          background 0.2s ease,
+          box-shadow 0.2s ease;
       }
-      a:hover {
-        background-color: #005bb5;
+      a.button:hover {
+        background: var(--pill-hover);
+        transform: translateY(-1px);
+        box-shadow: 0 10px 28px rgba(23, 43, 77, 0.12);
       }
+      a.button:active {
+        transform: translateY(0);
+        box-shadow: var(--shadow);
+      }
+
       footer {
-        margin-top: 2em;
+        margin-top: 20px;
         font-size: 0.9em;
-        color: #666;
+        color: var(--muted);
       }
     </style>
   </head>
   <body>
-    <h1>Baby Monitor App</h1>
-    <p>
-      The Baby Monitor app connects to your Raspberry Pi over your local Wi-Fi
-      network to provide secure, private audio and video monitoring of your
-      baby. All data stays in your home — nothing is sent to external servers.
-    </p>
+    <main class="panel">
+      <h1>Baby Monitor App</h1>
+      <p>
+        The Baby Monitor app connects to your Raspberry Pi over your local Wi-Fi
+        network to provide secure, private audio and video monitoring of your
+        baby. All data stays in your home — nothing is sent to external servers.
+      </p>
 
-    <div>
-      <a href="privacy.html">Privacy Policy</a>
-      <a href="support.html">Support</a>
-    </div>
+      <div class="actions">
+        <a class="button" href="privacy.html">Privacy Policy</a>
+        <a class="button" href="support.html">Support</a>
+      </div>
 
-    <footer>&copy; 2025 Nikos Varelas. All rights reserved.</footer>
+      <footer>&copy; 2025 Nikos Varelas. All rights reserved.</footer>
+    </main>
   </body>
 </html>
